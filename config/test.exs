@@ -13,12 +13,16 @@ config :chatter, Chatter.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
+config :chatter, :sandbox, Ecto.Adapters.SQL.Sandbox
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :chatter, ChatterWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "0ppo0a6Jei4qmHs3Dc6O4GfgEBPZge8UuR3XDtv5iIr7QKsTDf2cWRXqea1egVni",
-  server: false
+  server: true
+
+config :wallaby, driver: Wallaby.Chrome, otp_app: :chatter
 
 # In test we don't send emails.
 config :chatter, Chatter.Mailer, adapter: Swoosh.Adapters.Test
