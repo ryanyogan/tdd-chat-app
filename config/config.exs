@@ -17,6 +17,11 @@ config :chatter, ChatterWeb.Endpoint,
   pubsub_server: Chatter.PubSub,
   live_view: [signing_salt: "H1A8j8Lz"]
 
+config :doorman,
+  repo: Chatter.Repo,
+  secure_with: Doorman.Auth.Bcrypt,
+  user_module: Chatter.User
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
