@@ -1,6 +1,8 @@
 import { Socket } from 'phoenix';
 
-let socket = new Socket('/socket', { params: { token: window.userToken } });
+let socket = new Socket('/socket', {
+  params: { token: window.userToken, email: window.email },
+});
 
 socket.connect();
 
@@ -22,7 +24,7 @@ if (chatRoomTitle) {
   channel.on('new_message', (payload) => {
     const messageItem = document.createElement('li');
     messageItem.dataset.role = 'message';
-    messageItem.innerText = payload.body;
+    messageItem.innerText = `${payload.author}: ${payload.body}`;
     messagesContainer.appendChild(messageItem);
   });
 

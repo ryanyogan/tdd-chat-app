@@ -4,9 +4,11 @@ defmodule ChatterWeb.UserSocket do
   channel "chat_room:*", ChatterWeb.ChatRoomChannel
 
   @impl true
-  def connect(_params, socket, _connect_info) do
-    {:ok, socket}
+  def connect(%{"email" => email}, socket, _connect_info) do
+    {:ok, assign(socket, :email, email)}
   end
+
+  def connect(_, _, _), do: :error
 
   @impl true
   def id(_socket), do: nil
