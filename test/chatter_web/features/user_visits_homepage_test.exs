@@ -2,10 +2,7 @@ defmodule ChatterWeb.UserVistsHomepageTest do
   use ChatterWeb.FeatureCase, async: true
 
   test "user can visit homepage", %{session: session} do
-    user =
-      build(:user)
-      |> set_password("superpass")
-      |> insert()
+    user = insert(:user)
 
     session
     |> visit("/")
