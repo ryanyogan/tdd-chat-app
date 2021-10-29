@@ -8,14 +8,14 @@ defmodule ChatterWeb.UserCanChatTest do
 
     session1 =
       metadata
-      |> new_user()
+      |> new_session()
       |> visit(rooms_index())
       |> sign_in(as: user1)
       |> join_room(room.name)
 
     session2 =
       metadata
-      |> new_user()
+      |> new_session()
       |> visit(rooms_index())
       |> sign_in(as: user2)
       |> join_room(room.name)
@@ -31,7 +31,7 @@ defmodule ChatterWeb.UserCanChatTest do
     |> assert_has(message("Hi, welcome to #{room.name}"))
   end
 
-  defp new_user(metadata) do
+  defp new_session(metadata) do
     {:ok, user} = Wallaby.start_session(metadata: metadata)
     user
   end
